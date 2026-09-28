@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #20231f;
+  --muted: #6e746b;
+  --paper: #f3f0e8;
+  --card: #fbfaf5;
+  --line: #d9d5c9;
+  --accent: #c7e86b;
+  --accent-dark: #617c1c;
+  --shadow: 0 24px 60px rgba(35, 38, 31, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(199, 232, 107, 0.20), transparent 28%),
+    linear-gradient(135deg, #e7e4da, #f7f5ee 48%, #ddd9ce);
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  width: min(1040px, 92vw);
+  min-height: 100vh;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  padding: 54px 0;
+}
+
+.calculator {
+  width: min(680px, 100%);
+  background: var(--card);
+  border: 1px solid rgba(32, 35, 31, 0.08);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 28px 30px 22px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow,
+.display-label,
+.note-title {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 6px 0 0;
+  font-size: clamp(28px, 5vw, 42px);
+  letter-spacing: -0.06em;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-dark);
+  box-shadow: 0 0 0 4px rgba(199, 232, 107, 0.35);
+}
+
+.workspace {
+  padding: 22px;
+}
+
+.display-card {
+  min-height: 168px;
+  padding: 22px;
+  margin-bottom: 14px;
+  border-radius: 20px;
+  background: var(--ink);
+  color: #f7f7ef;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.display-label {
+  color: #8e968a;
+  margin-bottom: auto;
+}
+
+.display {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-family: "DM Mono", monospace;
+  font-size: clamp(42px, 9vw, 66px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.expression {
+  margin-top: 10px;
+  min-height: 18px;
+  text-align: right;
+  color: #aeb5a9;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+}
+
+.key {
+  min-height: 68px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #f4f2eb;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.key:hover {
+  background: #ebe8df;
+  transform: translateY(-2px);
+}
+
+.key:active,
+.key.pressed {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: inset 0 2px 5px rgba(32, 35, 31, 0.10);
+}
+
+.key.utility {
+  background: #e5e2d8;
+}
+
+.key.operator {
+  background: #e8f4bd;
+  border-color: #d1e99a;
+  color: #4e6814;
+}
+
+.key.equals {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #2f3a13;
+}
+
+.key.zero {
+  grid-column: span 2;
+}
+
+.hint {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.keys {
+  font-family: "DM Mono", monospace;
+  text-align: right;
+}
+
+.note {
+  position: relative;
+  width: min(430px, 92%);
+  padding: 24px 26px;
+  background: #fff7c9;
+  border: 1px solid #e8dca0;
+  box-shadow: 8px 10px 25px rgba(35, 38, 31, 0.10);
+  transform: rotate(-1.2deg);
+  color: #565239;
+}
+
+.note-pin {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  top: 10px;
+  left: 50%;
+  border-radius: 50%;
+  background: #a7a18a;
+  transform: translateX(-50%);
+}
+
+.note p {
+  line-height: 1.6;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.note-title {
+  color: #7c754e;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 22px 0;
+  }
+
+  .topbar {
+    padding: 22px;
+  }
+
+  .workspace {
+    padding: 14px;
+  }
+
+  .key {
+    min-height: 60px;
+  }
+
+  .hint {
+    flex-direction: column;
+  }
+
+  .keys {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key {
+    transition: none;
+  }
+}
